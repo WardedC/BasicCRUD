@@ -2,7 +2,7 @@
 {
     public class Customer
     {
-        public int Id { get; set; }
+        public int Id { get; set; } // ID único del cliente
         public string FirstName { get; set; } // Nombre
         public string LastName { get; set; } // Apellido
         public string Email { get; set; } // Correo Electrónico
@@ -10,6 +10,5 @@
         public string Address { get; set; } // Dirección
         public string City { get; set; } // Ciudad
         public string PostalCode { get; set; } // Código Postal
-        public DateTime DateOfBirth { get; set; } // Fecha de Nacimiento
+        public DateTime DateOfBirth { get; set; } // Fecha de Nacimiento    }
     }
-}
