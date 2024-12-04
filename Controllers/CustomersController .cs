@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BasicCRUD;
+using Microsoft.AspNetCore.Mvc;
 using WebApiCRUD.Data;
-using WebApiCRUD.Models;
+
 
 namespace WebApiCRUD.Controllers
 {
@@ -15,15 +16,12 @@ namespace WebApiCRUD.Controllers
             _context = context;
         }
 
-        // Obtener todos los clientes
         [HttpGet]
         public IActionResult GetAll()
         {
-            var customers = _context.Customers.ToList();
-            return Ok(customers);
+            return Ok(_context.Customers.ToList());
         }
 
-        // Agregar un cliente
         [HttpPost]
         public IActionResult Add([FromBody] Customer customer)
         {
@@ -32,7 +30,6 @@ namespace WebApiCRUD.Controllers
             return Ok("Cliente añadido exitosamente.");
         }
 
-        // Actualizar un cliente
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] Customer updatedCustomer)
         {
@@ -53,7 +50,6 @@ namespace WebApiCRUD.Controllers
             return Ok("Cliente actualizado.");
         }
 
-        // Eliminar un cliente
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

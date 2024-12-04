@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebApiCRUD.Models;
+﻿using BasicCRUD;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApiCRUD.Data
 {

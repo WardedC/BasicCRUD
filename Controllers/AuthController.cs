@@ -1,6 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BasicCRUD;
+using Microsoft.AspNetCore.Mvc;
 using WebApiCRUD.Data;
-using WebApiCRUD.Models;
+
 
 namespace WebApiCRUD.Controllers
 {
@@ -28,8 +29,8 @@ namespace WebApiCRUD.Controllers
             return Ok(new
             {
                 Message = "Inicio de sesión exitoso",
-                FullName = user.FullName,
-                Role = user.Role
+                FullName = user.FullName, // Esto viene de la base de datos
+                Role = user.Role // Esto también
             });
         }
 
