@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApiCRUD.Data;
 
-
 namespace WebApiCRUD.Controllers
 {
     [Route("api/[controller]")]
@@ -16,23 +15,44 @@ namespace WebApiCRUD.Controllers
             _context = context;
         }
 
+        // Obtener todos los clientes
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Ok(_context.Customers.ToList());
+            var customers = _context.Customers.ToList();
+            return Ok(customers);
         }
 
+        // Obtener un cliente por ID
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var customer = _context.Customers.Find(id);
+            if (customer == null)
+                return NotFound("Cliente no encontrado.");
+
+            return Ok(customer);
+        }
+
+        // Agregar un nuevo cliente
         [HttpPost]
         public IActionResult Add([FromBody] Customer customer)
         {
+            if (customer == null)
+                return BadRequest("El cliente no puede ser nulo.");
+
             _context.Customers.Add(customer);
             _context.SaveChanges();
             return Ok("Cliente añadido exitosamente.");
         }
 
+        // Actualizar un cliente existente
         [HttpPut("{id}")]
         public IActionResult Update(int id, [FromBody] Customer updatedCustomer)
         {
+            if (updatedCustomer == null)
+                return BadRequest("El cliente no puede ser nulo.");
+
             var customer = _context.Customers.Find(id);
             if (customer == null)
                 return NotFound("Cliente no encontrado.");
@@ -50,6 +70,7 @@ namespace WebApiCRUD.Controllers
             return Ok("Cliente actualizado.");
         }
 
+        // Eliminar un cliente
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
